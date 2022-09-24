@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Tasks</h1>
+    <a href="{% url 'todos:tasks-create' %}">Create task</a>
+
+    {% for task in tasks %}
+    
+        <div>
+            {% if task.completed %}
+            <strike>{{task.todo}}</strike>
+            {% else %}
+            <p>{{task.todo}}</p>
+            {% endif %}
+            <a href="{{task.get_absolute_url}}">Edit</a>
+            <a href="{% url 'todos:tasks-delete' pk=task.pk %}">Delete</a>
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+{% endblock content %}
